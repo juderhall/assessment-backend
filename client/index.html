@@ -5,6 +5,12 @@
   </head>
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
+    <button id="fortuneButton">Or a fortune</button>
+    <h1>Add your own fortune to the mix.</h1>
+    <form method="POST" action="/api/fortune">
+      <input type="text">
+      <input id="fortuneSubmitButton" type="submit">
+    </form>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -16,5 +22,22 @@
             });
       };
     </script>
+    <script>
+      document.getElementById("fortuneButton").onclick = function () {
+        axios.get("http://localhost:4000/api/fortune/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+    </script>
+    <!-- <script>
+      document.getElementById("fortuneSubmitButton").onclick = function () {
+        axios.post("http://localhost:4000/api/fortune/", )
+          .then(function () {
+            alert("This is working!")
+          })
+      }
+    </script> -->
   </body>
 </html>
