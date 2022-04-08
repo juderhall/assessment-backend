@@ -36,6 +36,9 @@ app.get("/api/fortune", (req, res) => {
 })
 
 app.post("/api/fortune", (req, res) => {
+  const { article } = req.params
+  // console.log(req.params)
+  // console.log(article)
 })
 
 app.listen(4000, () => console.log("Server running on 4000"));

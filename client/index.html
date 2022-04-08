@@ -7,8 +7,8 @@
     <button id="complimentButton">Get a compliment</button>
     <button id="fortuneButton">Or a fortune</button>
     <h1>Add your own fortune to the mix.</h1>
-    <form method="POST" action="/api/fortune">
-      <input type="text">
+    <form>
+      <input type="text" id="userInput">
       <input id="fortuneSubmitButton" type="submit">
     </form>
 
@@ -31,13 +31,14 @@
             });
       };
     </script>
-    <!-- <script>
+    <script>
       document.getElementById("fortuneSubmitButton").onclick = function () {
-        axios.post("http://localhost:4000/api/fortune/", )
-          .then(function () {
-            alert("This is working!")
-          })
+        const article = document.querySelector("userInput")
+        console.log(article)
+        axios.post("http://localhost:4000/api/fortune/", article)
+          // console.log(article)  
+          alert("This is working!")          
       }
-    </script> -->
+    </script>
   </body>
 </html>
