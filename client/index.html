@@ -8,8 +8,8 @@
     <button id="fortuneButton">Or a fortune</button>
     <h1>Add your own fortune to the mix.</h1>
     <form>
-      <input type="text" id="userInput">
-      <input id="fortuneSubmitButton" type="submit">
+      <input type="text" id="userFortune" name="userFortune" placeholder="Type your fortune here!">
+      <button id="fortuneSubmitButton" type="submit" onclick="returnText()">Submit</button>
     </form>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -32,12 +32,16 @@
       };
     </script>
     <script>
-      document.getElementById("fortuneSubmitButton").onclick = function () {
-        const article = document.querySelector("userInput")
-        console.log(article)
-        axios.post("http://localhost:4000/api/fortune/", article)
-          // console.log(article)  
-          alert("This is working!")          
+      // document.getElementById("fortuneSubmitButton").onclick = function () {
+      //   const article = document.getElementById("userFortune").value
+      //   console.log(article)
+      //   axios.post("http://localhost:4000/api/fortune/", article)
+      //   // alert("This is working!")          
+      // }
+      function returnText() {
+        let input = document.getElementById("userFortune").value
+        console.log(input)
+        axios.post("http://localhost:4000/api/fortune/", input)
       }
     </script>
   </body>

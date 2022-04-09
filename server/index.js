@@ -1,9 +1,14 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser")
 const app = express();
 
 
 app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.json()); // When we want to be able to accept JSON.
 
 const fortunes = [
@@ -36,9 +41,9 @@ app.get("/api/fortune", (req, res) => {
 })
 
 app.post("/api/fortune", (req, res) => {
-  const { article } = req.params
-  // console.log(req.params)
-  // console.log(article)
+  const { article } = req.body
+  console.log(req.body)
+  console.log(article)
 })
 
 app.listen(4000, () => console.log("Server running on 4000"));
