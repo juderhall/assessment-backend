@@ -35,10 +35,7 @@ app.get("/api/compliment", (req, res) => {
 });
 
 app.get("/api/fortune", (req, res) => {
-  let randomIndex = Math.floor(Math.random() * fortunes.length);
-  let randomFortune = fortunes[randomIndex];
-
-  res.status(200).send(randomFortune);
+  res.status(200).send(fortunes)
 })
 
 // why does destructuring not work here?

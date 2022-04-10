@@ -11,6 +11,10 @@
       <input type="text" id="userFortune" name="userFortune" placeholder="Type your fortune here!">
       <button id="fortuneSubmitButton" type="submit" onclick="returnText()">Submit</button>
     </form>
+    <h1>Crack open all the fortune cookies! </h1>
+    <form>
+      <datalist 
+    </form>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -26,18 +30,15 @@
       document.getElementById("fortuneButton").onclick = function () {
         axios.get("http://localhost:4000/api/fortune/")
             .then(function (response) {
-              const data = response.data;
-              alert(data);
+              const fortunes = response.data;
+              
+              let randomIndex = Math.floor(Math.random() * fortunes.length);
+              let randomFortune = fortunes[randomIndex];
+              alert(randomFortune);
             });
       };
     </script>
     <script>
-      // document.getElementById("fortuneSubmitButton").onclick = function () {
-      //   const article = document.getElementById("userFortune").value
-      //   console.log(article)
-      //   axios.post("http://localhost:4000/api/fortune/", article)
-      //   // alert("This is working!")          
-      // }
       function returnText() {
         let input = document.getElementById("userFortune").value
         //console.log(typeof(input))
