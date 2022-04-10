@@ -14,7 +14,7 @@ app.use(express.json()); // When we want to be able to accept JSON.
 
 const fortunes = [
   "To truely find oneself... is to play hide and seek alone.",
-  "Give this assessment extra credit!",
+  "You will give this assessment extra credit!",
   "The fortune you seek is in another cookie.",
   "A conclusion is simply the place where you got tired of thinking.",
   "A closed mouth gathers no feet."
