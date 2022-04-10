@@ -5,7 +5,8 @@ const app = express();
 
 
 app.use(cors());
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
+app.use(bodyParser.text({type:"*/*"}));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -40,10 +41,11 @@ app.get("/api/fortune", (req, res) => {
   res.status(200).send(randomFortune);
 })
 
+// why does destructuring not work here?
 app.post("/api/fortune", (req, res) => {
-  const { article } = req.body
-  console.log(req.body)
-  console.log(article)
+  let article = req.body
+  //console.log(article)
+  fortunes.push(article)
 })
 
 app.listen(4000, () => console.log("Server running on 4000"));
