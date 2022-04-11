@@ -45,4 +45,9 @@ app.post("/api/fortune", (req, res) => {
   fortunes.push(article)
 })
 
+app.delete("/api/fortune", (req, res) => {
+  let index = +req.body
+  console.log(index)
+})
+
 app.listen(4000, () => console.log("Server running on 4000"));
