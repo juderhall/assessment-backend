@@ -40,6 +40,7 @@
         axios.get("http://localhost:4000/api/fortune/")
             .then(function (response) {
               const fortunes = response.data;
+              console.log(fortunes)
               let randomIndex = Math.floor(Math.random() * fortunes.length);
               let randomFortune = fortunes[randomIndex];
               alert(randomFortune);
@@ -53,6 +54,7 @@
         let input = document.getElementById("userFortune").value
         axios.post("http://localhost:4000/api/fortune/", input)
       }
+      getFortunes()
     </script>
     
     <!-- called by dropdown menu to load all fortunes -->
@@ -66,12 +68,13 @@
               console.log(fortunes)
               for (let i = 0; i < fortunes.length; i++) {
                 const newOption = document.createElement("option")
-                newOption.innerText = fortunes[i].data
+                newOption.innerText = fortunes[i]
                 console.log(newOption.innerText)
                 fortuneCookiesList.appendChild(newOption)
               }
             });
       }
+      getFortunes()
     </script>
   </body>
 </html>
