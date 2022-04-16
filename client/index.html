@@ -51,6 +51,25 @@
       };
     </script>
     
+ <!-- called by dropdown menu to load all fortunes -->
+ <script>
+  //const fortuneCookiesList = document.getElementById("fortuneCookiesList")
+  //fortuneCookiesList.addEventListener('load', () => {
+  function getFortunes() {
+    axios.get("http://localhost:4000/api/fortune/")
+        .then(function (response) {
+          const fortunes = response.data;
+          for (let i = 0; i < fortunes.length; i++) {
+            const newOption = document.createElement("option")
+            newOption.innerText = fortunes[i] 
+            newOption.value = i 
+            fortuneCookiesList.appendChild(newOption)
+          }
+        });
+  }
+  //getFortunes()
+</script>
+
     <!-- called by addFortune button to send a fortune to the api -->
     <script>
       function returnText() {
@@ -59,34 +78,16 @@
       }
       getFortunes()
     </script>
-    
-    <!-- called by dropdown menu to load all fortunes -->
-    <script>
-      //const fortuneCookiesList = document.getElementById("fortuneCookiesList")
-      //fortuneCookiesList.addEventListener('load', () => {
-      function getFortunes() {
-        axios.get("http://localhost:4000/api/fortune/")
-            .then(function (response) {
-              const fortunes = response.data;
-              for (let i = 0; i < fortunes.length; i++) {
-                const newOption = document.createElement("option")
-                newOption.innerText = fortunes[i] 
-                newOption.value = i 
-                fortuneCookiesList.appendChild(newOption)
-              }
-            });
-      }
-      getFortunes()
-    </script>
-
+  
     <script>
       function deleteFortune(int) {
         console.log(int)
         if (int === "default") {
-          alert("Please seleted a fortune to delete!")
+          alert("Please selete a fortune to delete!")
         } else {
           
-          axios.delete("http://localhost:4000/api/fortune/", int)
+          console.log(int)
+          axios.delete(`http://localhost:4000/api/fortune/${int}`)
           getFortunes()
         }
       }
