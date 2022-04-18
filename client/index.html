@@ -19,12 +19,13 @@
     <h1>Crack open all the fortune cookies! </h1>
     <p1>You can select a fortune you want to discard and get rid of it!</p1>
     <div></div>
-      <select name="fortuneCookiesList" id="fortuneCookiesList">
-        <option value="default" selected>Select a Fortune</option>
-      </select>
-      <button id="fortuneDeleteButton" type="submit" onclick="deleteFortune(fortuneCookiesList.value)">Delete</button>
+      
+    <select name="fortuneCookiesList" id="fortuneCookiesList">
+      <option value="default" selected>Select a Fortune</option>
+    </select>
+    <button id="fortuneDeleteButton" type="submit" onclick="deleteFortune(fortuneCookiesList.value)">Delete</button>
     
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
     <script>
       document.getElementById("complimentButton").onclick = function () {
@@ -34,11 +35,7 @@
             alert(data);
           });
       };
-    </script>
     
-    <!-- //add random fortune functionality. Random index function removed from app.get in index.js to make /api/fortune/
-    //work for multiple api requests -->
-    <script>
       document.getElementById("fortuneButton").onclick = function () {
         axios.get("http://localhost:4000/api/fortune/")
             .then(function (response) {
@@ -49,43 +46,33 @@
               alert(randomFortune);
             });
       };
-    </script>
     
- <!-- called by dropdown menu to load all fortunes -->
- <script>
-  //const fortuneCookiesList = document.getElementById("fortuneCookiesList")
-  //fortuneCookiesList.addEventListener('load', () => {
-  function getFortunes() {
-    axios.get("http://localhost:4000/api/fortune/")
-        .then(function (response) {
-          const fortunes = response.data;
-          for (let i = 0; i < fortunes.length; i++) {
-            const newOption = document.createElement("option")
-            newOption.innerText = fortunes[i] 
-            newOption.value = i 
-            fortuneCookiesList.appendChild(newOption)
-          }
-        });
-  }
-  //getFortunes()
-</script>
+      function getFortunes() {
+        console.log("Am I being hit?")
+        axios.get("http://localhost:4000/api/fortune/")
+            .then(function (response) {
+              const fortunes = response.data;
+              for (let i = 0; i < fortunes.length; i++) {
+                const newOption = document.createElement("option")
+                newOption.innerText = fortunes[i] 
+                newOption.value = i 
+                fortuneCookiesList.appendChild(newOption)
+              }
+            });
+      }
 
-    <!-- called by addFortune button to send a fortune to the api -->
-    <script>
+      getFortunes()
+
       function returnText() {
         let input = document.getElementById("userFortune").value
         axios.post("http://localhost:4000/api/fortune/", input)
       }
-      getFortunes()
-    </script>
   
-    <script>
       function deleteFortune(int) {
         console.log(int)
         if (int === "default") {
           alert("Please selete a fortune to delete!")
-        } else {
-          
+        } else {  
           console.log(int)
           axios.delete(`http://localhost:4000/api/fortune/${int}`)
           getFortunes()
