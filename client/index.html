@@ -48,7 +48,15 @@
       };
     
       function getFortunes() {
-        console.log("Am I being hit?")
+        console.log(fortuneCookiesList.options)
+        // Currently, this function does not work in terms of the "delete fortune button."
+        // The plan was to delete the options displayed in the dropdown menu each time and then
+        // use this get method below to pull them after the selected fortune had been deleted 
+        // from the fortunes array in index.js.
+        // I was gonna use a for loop to iterate over the options and then an if statement to 
+        // make sure that the default option was not being deleted. I cannot get it to work
+        // and it feels like a money pit, SO just so you know that was how the delete 
+        // button was going to work. 
         axios.get("http://localhost:4000/api/fortune/")
             .then(function (response) {
               const fortunes = response.data;
